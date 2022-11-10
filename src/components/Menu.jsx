@@ -16,49 +16,30 @@ export const Menu = () => {
           </li>
         ))}
 
-        {/* <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/blog">Blog</Link>
-        </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li> */}
-
-        {/* <li>
-          <NavLink 
-            to="/"
-            className={({ isActive }) => isActive ? "text-blue-500" : "text-red-500"}
-          >Home</NavLink>
-        </li>
-        <li>
-          <NavLink 
-            className={({ isActive }) => isActive ? "text-blue-500" : "text-red-500"}
-            to="/blog"
-          >Blog</NavLink>
-        </li>
-        <li>
-          <NavLink 
-            className={({ isActive }) => isActive ? "text-blue-500" : "text-red-500"}
-            to="/profile"
-          >Profile</NavLink>
-        </li> */}
       </ul>
     </nav>
   )
 }
 
-const routes = []
-routes.push({
-  to: "/",
-  text: "Home"
-})
-routes.push({
-  to: "/blog",
-  text: "Blog"
-})
-routes.push({
-  to: "/profile",
-  text: "Profile"
-})
+const routes = [
+  {
+    to: "/",
+    text: "Home"
+  },
+  {
+    to: "/blog",
+    text: "Blog"
+  },
+  {
+    to: "/profile",
+    text: "Profile"
+  },
+  {
+    to: "/login",
+    text: "Login"
+  },
+  {
+    to: "/logout",
+    text: "Logout"
+  },
+]
