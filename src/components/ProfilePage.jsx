@@ -7,7 +7,7 @@ export const ProfilePage = () => {
   return (
     <>
       <h1>ProfilePage</h1>
-      <p>Welcome, {auth.user.username}</p>
+      <p>Welcome, {auth.user?.username}</p>
     </>
   )
 }

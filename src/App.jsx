@@ -7,7 +7,8 @@ import { LogoutPage } from "./components/LogoutPage"
 import { Menu } from "./components/Menu"
 import { ProfilePage } from "./components/ProfilePage"
 
-import { AuthProvider } from "./components/auth"
+import { AuthProvider, AuthRoute } from "./components/auth"
+import { PostProvider } from "./components/postContext"
 
 
 function App() {
@@ -15,21 +16,38 @@ function App() {
     <div className="App">
       <HashRouter>
         <AuthProvider>
-          <Menu />
+          <PostProvider> 
+            
+            <Menu />
 
-          <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
 
-            <Route path="/blog" element={<BlogPage />}>
-              <Route path=":slug" element={<BlogPost />} />
-            </Route>
+                <Route path="/blog" element={<BlogPage />}>
+                  <Route path=":slug" element={<BlogPost />} />
+                </Route>
 
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/logout" element={<LogoutPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route 
+                path="/logout" 
+                element={
+                  <AuthRoute>
+                    <LogoutPage />
+                  </AuthRoute>
+                } />
+              <Route 
+                path="/profile" 
+                element={
+                  <AuthRoute>
+                    <ProfilePage />
+                  </AuthRoute>
+                }
+              />
 
-            <Route path="*" element={<p>Not found</p>} />
-          </Routes>
+              <Route path="*" element={<p>Not found</p>} />
+            </Routes>
+          </PostProvider>
+          
         </AuthProvider>
       </HashRouter>
     </div>
