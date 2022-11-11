@@ -1,11 +1,23 @@
 import { Link, NavLink } from "react-router-dom"
+import { useAuth } from "./auth"
 
 export const Menu = () => {
+
+  const auth = useAuth()
+
+  if(!auth.user){
+
+  }
+
   return (
     <nav>
       <ul className="flex gap-5">
 
-        {routes.map(route => (
+        {routes.map(route => {
+
+          if(route.private && !auth.user) return null
+          if(route.text === 'Login' && auth.user) return null
+          return(
           <li key={route.text}>
             <NavLink
               className={({ isActive }) => isActive ? "text-blue-500" : "text-red-500"}
@@ -14,7 +26,7 @@ export const Menu = () => {
               {route.text}
             </NavLink>
           </li>
-        ))}
+        )})}
 
       </ul>
     </nav>
@@ -24,22 +36,27 @@ export const Menu = () => {
 const routes = [
   {
     to: "/",
-    text: "Home"
+    text: "Home",
+    private: false
   },
   {
     to: "/blog",
-    text: "Blog"
+    text: "Blog",
+    private: false
   },
   {
     to: "/profile",
-    text: "Profile"
+    text: "Profile",
+    private: true
   },
   {
     to: "/login",
-    text: "Login"
+    text: "Login",
+    private: false
   },
   {
     to: "/logout",
-    text: "Logout"
+    text: "Logout",
+    private: true
   },
 ]

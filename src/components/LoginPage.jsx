@@ -1,8 +1,14 @@
 import { useState } from 'react'
+import { useAuth } from "./auth"
 
 export const LoginPage = () => {
+	const auth = useAuth()
 	const [username, setUsername] = useState("")	
-	console.log(username)
+	
+	const login = (event) => {
+		event.preventDefault()
+		auth.login({username})
+	}
   
   return (
 	<>
@@ -15,7 +21,7 @@ export const LoginPage = () => {
 			value={username} 
 			onChange={(event) => setUsername(event.target.value)}  />
 
-			<button type="submit"></button>
+			<button type="submit">Iniciar sesion</button>
 		</form>
 	</>
   )
